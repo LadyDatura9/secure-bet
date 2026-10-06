@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SecureBet — Opportunità Surebet</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🎯 SecureBet</h1>
+    <p>Opportunità di surebet e arbitraggio in tempo reale</p>
+  </header>
+
+  <main>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">{{ eventi|selectattr('esiste')|length }}</span>
+        <span class="stat-label">Surebet attive</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">{{ eventi|length }}</span>
+        <span class="stat-label">Eventi monitorati</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">{{ aggiornato or "—" }}</span>
+        <span class="stat-label">Ultimo aggiornamento</span>
+      </div>
+    </div>
+
+    {% if errore %}
+    <div class="alert">⚠️ Errore nel recupero quote: {{ errore }}<br>
+    <small>Inserisci la tua API key di The Odds API in server.py e riavvia.</small></div>
+    {% endif %}
+
+    <h2>Opportunità</h2>
+    <table class="tabella">
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>1</th><th>X</th><th>2</th>
+          <th>ROI</th>
+          <th>Stato</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ev in eventi %}
+        <tr class="{{ 'surebet' if ev['esiste'] else '' }}">
+          <td>{{ ev['evento'] }}</td>
+          {% for q in ev['quote'] %}
+          <td>
+            <strong>{{ q['quota'] }}</strong>
+            <small>{{ q['book'] }}</small>
+          </td>
+          {% endfor %}
+          <td>
+            {% if ev['esiste'] %}
+            <span class="roi">+{{ ev['profitto_pct'] }}%</span>
+            {% else %}
+            <span class="niente">—</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if ev['esiste'] %}
+            <span class="badge badge-yes">SUREBET</span>
+            {% else %}
+            <span class="badge badge-no">—</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p class="nota">
+      Aggiornamento: The Odds API (piano gratis, 500 crediti/mese).
+      Per il tempo reale: <a href="{{ url_for('profilo') }}">inserisci le tue API key</a>.
+    </p>
+  </main>
+
+  <footer>
+    <p>SecureBet — Portale Surebet & Arbitraggio</p>
+  </footer>
+</body>
+</html>

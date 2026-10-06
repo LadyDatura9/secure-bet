@@ -1,0 +1,113 @@
+/* SecureBet — Stile */
+:root {
+  --sfondo: #0d1117;
+  --schiaro: #1a2332;
+  --saccento: #00d68f;
+  --stesto: #e6edf3;
+  --sgrigio: #8899aa;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--sfondo);
+  color: var(--stesto);
+  line-height: 1.6;
+}
+
+header {
+  padding: 2rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--schiaro);
+}
+header h1 { font-size: 1.6rem; margin-bottom: .3rem; }
+header p { color: var(--sgrigio); font-size: .95rem; }
+
+main { padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.stat {
+  background: var(--schiaro);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.stat-num { display: block; font-size: 1.8rem; font-weight: 700; color: var(--saccento); }
+.stat-label { color: var(--sgrigio); font-size: .85rem; }
+
+.alert {
+  background: #3d1f1f;
+  border: 1px solid #f87171;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.tabella {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.tabella th, .tabella td {
+  padding: .7rem .8rem;
+  border-bottom: 1px solid var(--schiaro);
+  text-align: left;
+}
+.tabella th { color: var(--sgrigio); font-size: .85rem; text-transform: uppercase; }
+.tabella tr.surebet { background: #0d2e1f; }
+.tabella tr.surebet td { color: var(--saccento); }
+
+.roi { color: var(--saccento); font-weight: 700; }
+.niente { color: var(--sgrigio); }
+
+.badge {
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  font-size: .8rem;
+  font-weight: 700;
+}
+.badge-yes { background: var(--saccento); color: #0d1117; }
+.badge-no { background: var(--schiaro); color: var(--sgrigio); }
+
+.form { max-width: 480px; }
+.campo { margin-bottom: 1.2rem; }
+.campo label { display: block; margin-bottom: .3rem; font-weight: 600; }
+.campo input {
+  width: 100%;
+  padding: .6rem .8rem;
+  background: var(--schiaro);
+  border: 1px solid #2a3a4a;
+  border-radius: 6px;
+  color: var(--stesto);
+  font-size: .95rem;
+}
+.campo input:focus { outline: none; border-color: var(--saccento); }
+.campo small { color: var(--sgrigio); display: block; margin-top: .3rem; }
+button {
+  background: var(--saccento);
+  color: #0d1117;
+  font-weight: 700;
+  padding: .7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+button:hover { opacity: .88; }
+
+.nota { color: var(--sgrigio); font-size: .85rem; margin-top: 1rem; }
+.nota a { color: var(--saccento); }
+
+footer {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--sgrigio);
+  font-size: .85rem;
+  border-top: 1px solid var(--schiaro);
+  margin-top: 2rem;
+}

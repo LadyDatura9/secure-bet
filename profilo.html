@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SecureBet — Il tuo profilo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🔐 Il tuo profilo</h1>
+    <p>Inserisci le tue API key per attivare la modalità tempo reale.</p>
+  </header>
+
+  <main>
+    <form method="post" action="{{ url_for('profilo_salva') }}" class="form">
+      <div class="campo">
+        <label>Betfair Exchange API key</label>
+        <input type="password" name="betfair_key" placeholder="Incolla qui la tua key Betfair">
+        <small>Da: mybetfair.com → API → Application</small>
+      </div>
+      <div class="campo">
+        <label>SingBet API key</label>
+        <input type="password" name="singbet_key" placeholder="Incolla qui la tua key SingBet">
+        <small>Da: singbet.com → Impostazioni → API</small>
+      </div>
+      <button type="submit">Salva</button>
+      <p class="nota">
+        Le tue key si salvano cifrate (AES-256) nel database del server.
+        Da quel momento il portale usa anche le tue quote nei calcoli di probabilità e ROI.
+      </p>
+    </form>
+  </main>
+
+  <footer>
+    <p><a href="{{ url_for('index') }}">← Torna alle opportunità</a></p>
+  </footer>
+</body>
+</html>
